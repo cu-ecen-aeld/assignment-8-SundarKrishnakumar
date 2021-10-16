@@ -1,0 +1,21 @@
+#! /bin/sh 
+# reference: MELP book
+# https://www.thirtythreeforty.net/posts/2020/03/mastering-embedded-linux-part-4-adding-features/
+ 
+case "$1" in
+      start)
+           start-stop-daemon -S -n module_load -a /usr/bin/module_load 
+           start-stop-daemon -S -n scull_load -a /usr/bin/scull_load       
+           modprobe hello.ko
+           ;;
+     stop)
+           start-stop-daemon -K -n module_unload -a /usr/bin/module_unload 
+           start-stop-daemon -K -n scull_unload -a /usr/bin/scull_load 
+           rmmod hello.ko
+           ;;
+     *)
+           echo "Usage: $0 {start|stop}"
+           exit 1
+esac
+
+exit 0
