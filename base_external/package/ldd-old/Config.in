@@ -1,0 +1,7 @@
+
+config BR2_PACKAGE_LDD_OLD
+	bool "ldd-old"
+	depends on BR2_LINUX_KERNEL
+	help
+	  Includes the misc-modules & scull in the kernel image.
+
